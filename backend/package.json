@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Evmostats backend",
+  "author": "Mario Pino Uceda, Albert Batiste Troyano",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "docker": "docker-compose -f docker/docker-compose-evmostats.yml up -d",
+    "docker:build": "docker-compose -f docker/docker-compose-evmostats.yml build",
+    "docker:clean": "bash docker/scripts/clean-dockers.sh",
+    "docker:stop": "docker stop backend_crawler_1 backend_graphql-engine_1 backend_postgres_1",
+    "docker:postgres:backup": "docker exec -t backend_postgres_1 pg_dump evmostats -c -U evmostats > evmostats_dump.sql",
+    "docker:postgres:restore": "cat evmostats_dump.sql | docker exec -i backend_postgres_1 psql -U evmostats -d evmostats && docker restart backend_postgres_1",
+    "docker:rebuild:graphql": "docker-compose -f docker/docker-compose-evmostats.yml up -d graphql-engine"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bech32": "^2.0.0",
+    "dotenv": "^8.2.0",
+    "pg": "^8.4.2",
+    "pg-format": "^1.0.4",
+    "pg-native": "^3.0.0",
+    "pino": "^6.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}

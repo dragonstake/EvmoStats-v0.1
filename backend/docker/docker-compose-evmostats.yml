@@ -1,0 +1,64 @@
+version: '3.7'
+
+services:
+  # SQL data base
+  #
+  postgres:
+    image: postgres
+    container_name: backend_postgres
+    restart: always
+    volumes:
+      - 'db-data:/var/lib/postgresql/data'
+      - './sql/backend.sql:/docker-entrypoint-initdb.d/backend.sql'
+    environment:
+      POSTGRES_USER: 'evmostats'
+      POSTGRES_PASSWORD: 'evmostats'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U evmostats']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    command:
+      - "postgres"
+
+  #
+  # Hasura
+  #
+  graphql-engine:
+    image: hasura/graphql-engine:v1.3.3
+    container_name: backend_graphql
+    ports:
+      - '8082:8080'
+    depends_on:
+      - 'postgres'
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://evmostats:evmostats@postgres:5432/evmostats
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: public
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_ADMIN_SECRET: password
+  #
+  # Stats crawler
+  #
+  crawler:
+    image: crawler:latest
+    container_name: backend_crawler
+    build:
+      context: ../
+      dockerfile: ./docker/crawler/Dockerfile
+    depends_on:
+      - 'postgres'
+    restart: always
+    environment:
+      - NODE_ENV=production    
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+    
+#
+# Persistent volumes
+#
+volumes:
+  db-data:
+    name: backend_db-data

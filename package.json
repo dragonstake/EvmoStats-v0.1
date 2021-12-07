@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "name": "evmostats",
+  "description": "EVMOS blockchain statistics",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dragonstake/evmostats.git"
+  },
+  "keywords": [
+    "blockchain",
+    "evmos",
+    "cosmos",
+    "tendermint"
+  ],
+  "author": "Mario Pino Uceda, Albert Batiste Troyano",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/dragonstake/evmostats/issues"
+  },
+  "homepage": "https://github.com/dragonstake/evmostats#readme",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {},
+  "dependencies": {}
+}
