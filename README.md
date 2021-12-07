@@ -50,6 +50,12 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
+Check docker installation
+
+```bash
+sudo docker run hello-world
+```
+
 Manage Docker as a non-root user [https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
 
 ```bash
@@ -61,12 +67,6 @@ Verify that you can run docker commands without sudo.
 
 ```bash
 docker run hello-world
-```
-
-Check docker installation
-
-```bash
-sudo docker run hello-world
 ```
 
 Install docker-compose
