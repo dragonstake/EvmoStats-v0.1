@@ -8,20 +8,85 @@ Evmos blockchain long term stats
 ### Prepare
 
 Ubuntu 20.04
+
+Install nvm: [https://github.com/nvm-sh/nvm#installing-and-updating](https://github.com/nvm-sh/nvm#installing-and-updating)
+
 ```bash
-curl -L "https://github.com/docker/compose/releases/download/v2.1.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-apt install apt-transport-https ca-certificates curl software-properties-common build-essential
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-apt install docker-ce
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-apt install yarn
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+Run
+
+```bash
+source ~/.bashrc
+```
+
+Install node v14.16: [https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/](https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/)
+
+```bash
 nvm install v14.16
 ```
 
+Install yarn: [https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable)
+
+```bash
+npm install --global yarn
+```
+
+Install docker [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
+
+```bash
+sudo apt-get update
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+Manage Docker as a non-root user [https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
+
+```bash
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+
+Verify that you can run docker commands without sudo.
+
+```bash
+docker run hello-world
+```
+
+Check docker installation
+
+```bash
+sudo docker run hello-world
+```
+
+Install docker-compose
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+Check docker-compose installation
+
+```bash
+docker-compose --version
+```
+
+Install libpq-dev, make, gcc and g++
+
+```bash
+sudo apt install make gcc g++ libpq-dev
+```
 Install mono-repo:
 
 ```bash
