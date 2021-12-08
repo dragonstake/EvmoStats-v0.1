@@ -99,7 +99,9 @@ yarn
 
 You'll need to configure your own RPCs endpoints in following files: backend/backend.config.js, backend/lib/utils.js and frontend/nuxt.config.js.
 
-If you're not serving evmostats from a evmos node, you'll need to configure a reverse proxy for your RPCs and APIs in order to avoid CORS problems.
+Evmostats uses Cosmos SDK REST Server, you'll have to enable it in your evmos node configuration. https://docs.cosmos.network/master/core/grpc_rest.html#rest-server
+
+If you're not serving evmostats from a evmos node, you'll need to configure a reverse proxy for your RPCs and APIs in order to avoid CORS problems. Evmostas uses Keybase API to retrieve some validators info: https://docs.cosmos.network/master/core/grpc_rest.html#rest-server
 
 In addition, you may want to change Hasura password, located in backend/docker/docker-compose-evmostats.yml.
 
