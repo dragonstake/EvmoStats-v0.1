@@ -4,7 +4,7 @@ export default {
   publicRuntimeConfig: {    
     apiProposals: process.env.API_PROPOSALS,
     apiKeybase: process.env.API_KEYBASE,
-    backendWs: process.env.NODE_ENV === 'production' ? process.env.BACKEND_WS_PROD : process.env.BACKEND_WS_DEV,
+    backendWs: process.env.BACKEND_WS,
     theme: '@/assets/scss/themes/evmos.scss',    
   },
   privateRuntimeConfig: {

@@ -45,11 +45,5 @@ module.exports = {
 
     const response = await axios.get(endpoint);
     return response.data.balances[0].amount;
-  },
-  // unbondingTokens: async (address) => {
-  //   const endpoint = `http://3.8.131.4:8080/cosmos/staking/v1beta1/delegators/${address}/unbonding_delegations`
-
-  //   const response = await axios.get(endpoint);
-  //   return response.data.unbonding_responses[0].amount
-  // },
+  },  
 };
