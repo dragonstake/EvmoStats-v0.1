@@ -95,6 +95,14 @@ cd evmostats
 yarn
 ```
 
+### RPCs and passwords
+
+You'll need to configure your own RPCs endpoints in following files: backend/backend.config.js, backend/lib/utils.js and frontend/nuxt.config.js.
+
+If you're not serving evmostats from a evmos node, you'll need to configure a reverse proxy for your RPCs and APIs in order to avoid CORS problems.
+
+In addition, you may want to change Hasura password, located in backend/docker/docker-compose-evmostats.yml.
+
 ### Backend
 
 You will need `nodejs`, `docker` and `docker-compose`:
