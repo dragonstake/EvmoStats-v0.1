@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 module.exports = {
   postgresConnParams: {
     user: process.env.POSTGRES_USER || 'evmostats',

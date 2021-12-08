@@ -1,7 +1,6 @@
 // @ts-check
 const pino = require("pino");
 const axios = require("axios").default;
-require("dotenv").config();
 
 const logger = pino();
 
