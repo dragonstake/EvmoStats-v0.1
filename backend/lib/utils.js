@@ -32,7 +32,7 @@ module.exports = {
     }
   },
   delegatedTokens: async (address) => {
-    const endpoint = "http://localhost:1317/cosmos/staking/v1beta1/delegations/" + address;
+    const endpoint = `http://localhost:1317/cosmos/staking/v1beta1/delegations/${address}`;
 
     const response = await axios.get(endpoint);
 
@@ -40,7 +40,7 @@ module.exports = {
     return delegations.reduce((a, b) => a + b.delegation.shares, 0);
   },
   availableTokens: async (address) => {
-    const endpoint ="http://localhost:1317/cosmos/bank/v1beta1/balances/" + address;
+    const endpoint =`http://localhost:1317/cosmos/bank/v1beta1/balances/${address}`;
 
     const response = await axios.get(endpoint);
     return response.data.balances[0].amount;

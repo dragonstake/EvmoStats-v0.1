@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :v-if="proposal">
+  <div v-if="proposal" class="container">
     <Proposal :proposal="proposal" />
   </div>
 </template>
@@ -19,8 +19,10 @@ export default {
     },
   },
   async created() {
-    const response = await axios.get(this.$config.apiProposals + '/' + this.id)
-    this.proposal = response.data.proposal
+    const response = await axios.get(
+      `${this.$config.apiEvmos}gov/proposals/${this.id}`
+    )
+    this.proposal = response.data.result
   },
 }
 </script>

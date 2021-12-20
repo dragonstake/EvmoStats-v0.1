@@ -1,14 +1,14 @@
 export default {
-
   // Runtime config: https://nuxtjs.org/docs/directory-structure/nuxt-config/#runtimeconfig
   publicRuntimeConfig: {    
-    apiProposals: process.env.API_PROPOSALS,
-    apiKeybase: process.env.API_KEYBASE,
-    backendWs: process.env.BACKEND_WS,
-    theme: '@/assets/scss/themes/evmos.scss',    
+    apiKeybase: 'https://keybase.io/_/api/1.0/',
+    apiEvmos: 'http://localhost:1317/',
+    backendWs: 'ws://localhost:8082/v1/graphql',    
+    backendHttp: 'http://localhost:8082/v1/graphql',    
+    theme: '@/assets/scss/themes/evmos.scss',
   },
   privateRuntimeConfig: {
-    adminSecret: process.env.ADMIN_SECRET
+    adminSecret: process.env.ADMIN_SECRET,
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -32,7 +32,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [ '@/assets/scss/themes/evmos.scss' ],
+  css: ['@/assets/scss/themes/evmos.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -63,6 +63,8 @@ export default {
     '@nuxtjs/apollo',
     // https://helmetjs.github.io/
     'nuxt-helmet',
+    // https://github.com/markdown-it/markdown-it
+    '@nuxtjs/markdownit',
   ],
 
   bootstrapVue: {
@@ -101,6 +103,10 @@ export default {
       maxAge: 15552000,
     },
     contentSecurityPolicy: false,
+  },
+
+  markdownit: {
+    runtime: true,
   },
 
   module: {

@@ -81,15 +81,13 @@ export default {
   async created() {
     if (this.validator.description.identity) {
       let response = await axios.get(
-        this.$config.apiKeybase +
-          'key/fetch.json?pgp_key_ids=' +
-          this.validator.description.identity
+        `${this.$config.apiKeybase}key/fetch.json?pgp_key_ids=${this.validator.description.identity}`
       )
 
       const uid = response.data.keys[0].uid
 
       response = await axios.get(
-        this.$config.apiKeybase + 'user/lookup.json?uid=' + uid
+        `${this.$config.apiKeybase}user/lookup.json?uid=${uid}`
       )
 
       this.logo = response.data.them.pictures.primary.url

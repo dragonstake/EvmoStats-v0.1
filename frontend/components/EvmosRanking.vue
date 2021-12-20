@@ -1,24 +1,24 @@
 <template>
   <div v-if="ranking">
     <div class="row mt-4 stats">
-      <div class="col-sm-6 col-md-4 text-center">
-        <h2 class="display-1">{{ ranking.bonded_validators }}</h2>
+      <div class="col-6 col-md-4 text-center">
+        <h2 class="display-2">{{ ranking.bonded_validators }}</h2>
         <p>Bonded validators</p>
       </div>
-      <div class="col-sm-6 col-md-4 text-center">
-        <h2 class="display-1">{{ ranking.unbonded_validators }}</h2>
+      <div class="col-6 col-md-4 text-center">
+        <h2 class="display-2">{{ ranking.unbonded_validators }}</h2>
         <p>Unbonded validators</p>
       </div>
-      <div class="col-sm-6 col-md-4 text-center">
-        <h2 class="display-1">{{ ranking.unbonding_validators }}</h2>
+      <div class="col-6 col-md-4 text-center">
+        <h2 class="display-2">{{ ranking.unbonding_validators }}</h2>
         <p>Unbonding validators</p>
       </div>
-      <div class="col-sm-6 col-md-4 text-center">
-        <h2 class="display-1">{{ ranking.jailed_validators }}</h2>
+      <div class="col-6 col-md-4 text-center">
+        <h2 class="display-2">{{ ranking.jailed_validators }}</h2>
         <p>Jailed validators</p>
       </div>
-      <div class="col-sm-6 col-md-4 text-center">
-        <h2 class="display-1">{{ ranking.total_validators }}</h2>
+      <div class="col-6 col-md-4 text-center">
+        <h2 class="display-2">{{ ranking.total_validators }}</h2>
         <p>Total validators</p>
       </div>
     </div>
@@ -104,7 +104,7 @@ export default {
     },
   },
   async created() {
-    const response = await axios.get(this.$config.apiProposals + '?pagination.limit=1000')
+    const response = await axios.get(`${this.$config.apiEvmos}gov/proposals`)
     this.proposals = response.data.proposals
   },
   methods: {

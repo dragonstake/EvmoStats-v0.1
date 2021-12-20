@@ -158,14 +158,23 @@ pre {
   color: $light;
 }
 
-.stats .display-1 {
-  font-family: 'Roboto-Thin', sans-serif;
-  color: $primary2;
+.net-stats-font {
+  font-size: 1.5rem;
 }
-.stats p {
-  font-family: 'Roboto-Light', sans-serif;
-  color: $gray-500;
+
+.stats,
+.net-stats {
+  .display-1, .display-2, .net-stats-font {
+    font-family: 'Roboto-Thin', sans-serif;
+    color: $primary2;
+  }
+
+  p {
+    font-family: 'Roboto-Light', sans-serif;
+    color: $gray-500;
+  }
 }
+
 .title {
   font-family: 'Roboto-Thin', sans-serif;
 }

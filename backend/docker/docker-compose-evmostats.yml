@@ -52,7 +52,7 @@ services:
       - 'postgres'
     restart: always
     environment:
-      - NODE_ENV=production    
+      - NODE_ENV=production   
     
 #
 # Persistent volumes
